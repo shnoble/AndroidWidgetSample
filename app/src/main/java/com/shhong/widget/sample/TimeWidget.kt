@@ -1,9 +1,13 @@
 package com.shhong.widget.sample
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.widget.RemoteViews
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Implementation of App Widget functionality.
@@ -34,10 +38,22 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.widget_title)
+    /**
+     * 현재 시간 정보를 가져오기 위한 Calendar
+     */
+    val calendar = Calendar.getInstance()
+    val format = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREA)
+
+    val pendingIntent: PendingIntent = Intent(context, MainActivity::class.java)
+        .let { intent ->
+            PendingIntent.getActivity(context, 0, intent, 0)
+        }
+
     // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.time_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
+    val views = RemoteViews(context.packageName, R.layout.time_widget).apply {
+        setTextViewText(R.id.widget_text, format.format(calendar.time))
+        setOnClickPendingIntent(R.id.widget_layout, pendingIntent)
+    }
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)

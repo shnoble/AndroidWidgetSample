@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#09C"
@@ -24,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="#09C"
-        android:contentDescription="@string/widget_title"
-        android:text="@string/widget_title"
+        android:contentDescription="@string/widget_title_keyguard"
+        android:text="@string/widget_title_keyguard"
         android:textColor="#ffffff"
         android:textSize="16sp"/>
 
