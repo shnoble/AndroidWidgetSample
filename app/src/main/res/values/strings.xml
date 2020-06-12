@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WidgetSample</string>
+    <string name="widget_title">현재 시간</string>
+    <string name="add_widget">Add widget</string>
 </resources>
